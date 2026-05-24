@@ -7,9 +7,9 @@ spec:
   generators:
     - list:
         elements:
-          - cluster: k8s-qa
+          - cluster: qa
             project: app-1
-          - cluster: k8s-qa
+          - cluster: qa
             project: app-2
   template:
     metadata:
