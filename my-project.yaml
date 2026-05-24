@@ -17,7 +17,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/yuval597/gitops.git
+        repoURL: github.com/yuval597/GitOps/tree/applab
         targetRevision: applab
         path: '{{project}}/k8s-{{cluster}}'
       destination:
