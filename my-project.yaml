@@ -8,11 +8,9 @@ spec:
     - list:
         elements:
           - cluster: dev
-            project: project-1
+            project: app-1
           - cluster: qa
-            project: project-1
-          - cluster: prd
-            project: project-1
+            project: app-1
   template:
     metadata:
       name: '{{project}}-{{cluster}}'
