@@ -7,10 +7,10 @@ spec:
   generators:
     - list:
         elements:
-          - cluster: k8s
+          - cluster: k8s-qa
             project: app-1
-          - cluster: k8s
-            project: app-1
+          - cluster: k8s-qa
+            project: app-2
   template:
     metadata:
       name: '{{project}}-{{cluster}}'
@@ -28,4 +28,4 @@ spec:
           prune: true
           selfHeal: true
         syncOptions:
-      - CreateNamespace=true  
+          - CreateNamespace=true
