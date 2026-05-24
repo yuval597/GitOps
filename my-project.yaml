@@ -11,6 +11,8 @@ spec:
             project: project-1
           - cluster: qa
             project: project-1
+          - cluster: prd
+            project: project-1
   template:
     metadata:
       name: '{{project}}-{{cluster}}'
