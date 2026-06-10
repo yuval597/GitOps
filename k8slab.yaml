@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
       - name: k8slab #from values
-        image: yuval597/k8slab:16 #from values
+        image: yuval597/k8slab:17 #from values
         ports:
         - containerPort: 5001
 ---
