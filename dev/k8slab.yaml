@@ -1,0 +1,84 @@
+---
+# Source: myapp/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k8slab-cm
+  labels:
+    
+    generator: helm
+    date: 2026-06-12
+    name: k8slab
+
+data:
+  dbname: "DB_MYSQL"
+  dbtable: music
+  k8s: v1.35.0
+---
+# Source: myapp/templates/service.yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: k8slab-svc #from RELEASE NAME
+spec:
+  type: LoadBalancer
+  selector:
+    app: k8slab
+  ports:
+  - name: http
+    protocol: TCP
+    port: 5001 #from Values
+    targetPort: 5001  #from values
+---
+# Source: myapp/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8slab
+spec:
+  selector:
+    matchLabels:
+      app: k8slab
+      
+      generator: helm
+      date: 2026-06-12
+      name: k8slab
+  replicas: 1   #from values
+  template:
+    metadata:
+      labels:
+        app: k8slab
+        
+        generator: helm
+        date: 2026-06-12
+        name: k8slab
+    spec:
+      containers:
+      - name: k8slab #from values
+        image: yuval597/k8slab:3 #from values
+        ports:
+        - containerPort: 5001
+---
+# Source: myapp/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8slab-ing
+  labels:
+    
+    generator: helm
+    date: 2026-06-12
+    name: k8slab
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+       paths:
+        - path: /
+          pathType: Prefix
+
+          backend:
+            service:
+              name: k8slab-svc
+              port:
+                 number: 5001
