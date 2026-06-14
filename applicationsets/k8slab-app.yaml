@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: k8slab
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+          - env: qa
+          - env: prod
+
+  template:
+    metadata:
+      name: 'k8slab-{{env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/yuval597/GitOps.git
+        targetRevision: main
+        path: 'k8slab/{{env}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{env}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
