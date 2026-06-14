@@ -43,7 +43,7 @@ spec:
       generator: helm
       date: 2026-06-14
       name: k8slab
-  replicas: 1   #from values
+  replicas: 3   #from values
   template:
     metadata:
       labels:
@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
       - name: k8slab #from values
-        image: yuval597/k8slab:13 #from values
+        image: yuval597/k8slab:14 #from values
         ports:
         - containerPort: 5001
 ---
