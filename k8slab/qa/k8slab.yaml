@@ -7,7 +7,7 @@ metadata:
   labels:
     
     generator: helm
-    date: 2026-06-14
+    date: 2026-06-17
     name: k8slab
 
 data:
@@ -41,21 +41,21 @@ spec:
       app: k8slab
       
       generator: helm
-      date: 2026-06-14
+      date: 2026-06-17
       name: k8slab
-  replicas: 1   #from values
+  replicas: 3   #from values
   template:
     metadata:
       labels:
         app: k8slab
         
         generator: helm
-        date: 2026-06-14
+        date: 2026-06-17
         name: k8slab
     spec:
       containers:
       - name: k8slab #from values
-        image: yuval597/k8slab:11 #from values
+        image: yuval597/k8slab:15 #from values
         ports:
         - containerPort: 5001
 ---
@@ -67,7 +67,7 @@ metadata:
   labels:
     
     generator: helm
-    date: 2026-06-14
+    date: 2026-06-17
     name: k8slab
 spec:
   ingressClassName: nginx
